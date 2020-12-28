@@ -1,0 +1,35 @@
+{
+  "name": "vue-app-base",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "echo \"请使用 Webpack Dev Server 实现此任务\"",
+    "build": "echo \"请使用 Webpack 实现此任务\"",
+    "lint": "echo \"请使用 ESLint 实现此任务\""
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
