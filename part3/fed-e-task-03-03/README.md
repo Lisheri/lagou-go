@@ -34,13 +34,22 @@
 **服务器上安装 nvm 和 node**
 
 ```shell
-# 在服务器上安装 nvm   参考: https://github.com/nvm-sh/nvm
-wget -qO- https://151.101.108.133/nvm-sh/nvm/v0.35.5/install.sh | bash
+# 1)编辑文件  
+vim  /etc/hosts
 
-# 重启ssh终端后, 查看 nvm 版本
+# 2)文件中添加内容
+199.232.28.133  raw.githubusercontent.com
+
+# 3)保存退出
+ESC   :wq
+
+# 4)在服务器上安装 nvm   参考: https://github.com/nvm-sh/nvm
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+
+# 5)重启ssh终端后, 查看 nvm 版本
 nvm --version
 
-# 安装 Node.js lts 长期支持版
+# 6)安装 Node.js lts 长期支持版
 nvm install --lts
 ```
 
