@@ -50,11 +50,20 @@ console.log( ex3() ) // Maybe { _value: 'A' }
 /*
   练习4:
   实现 ex4 函数
-  把参数转为整数,并且返回相应函子
-  要求使用 Maybe 
+  把参数中数值部分转为整数,并且以函子形式返回
+  换言之, 提取字符串里的数字作为返回结果函子的 _value 值
+  如果参数为 null 或 undefined 也不能报错
 */
 
 // 1.实现 ex4 函数
 
 // 2.测试打印
 console.log( ex4('7R') )   // Maybe { _value: 7 }
+console.log( ex4('7.6B'))  // Maybe { _value: 7 }
+console.log( ex4('8.2G') ) // Maybe { _value: 8 }
+
+console.log( ex4(null) )      // Maybe { _value: null }
+console.log( ex4(undefined) ) // Maybe { _value: undefined }
+
+console.log( ex4('i7.5') )    // Maybe { _value: NaN }
+console.log( ex4('abc') )     // Maybe { _value: NaN }
