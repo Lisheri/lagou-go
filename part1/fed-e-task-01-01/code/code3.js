@@ -49,10 +49,15 @@ console.log( ex3() ) // Maybe { _value: 'A' }
 
 /*
   练习4:
-  实现 ex4 函数
+  使用 Maybe 重写 ex4, 不要有 if 语句
+  let ex4 = function (n) {
+    if (n) {
+      return parseInt(n)
+    }
+  }
+  功能描述:
   把参数中数值部分转为整数,并且以函子形式返回
   换言之, 提取字符串里的数字作为返回结果函子的 _value 值
-  如果参数为 null 或 undefined 也不能报错
 */
 
 // 1.实现 ex4 函数
