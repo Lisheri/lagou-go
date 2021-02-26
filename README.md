@@ -54,3 +54,11 @@ $ git push origin master
 #### 5.提交自己仓库相应模块地址即可
 
 ![](./part1/fed-e-task-01-01/images/2020-12-28_191708.png)
+
+
+
+
+
+
+
+[**对于老学员 Fork 后, 出现403无权访问的解决**](https://gitee.com/lagoufed/fed-e-questions/blob/master/part1/%E8%A7%A3%E5%86%B3%E4%BD%9C%E4%B8%9A403%E9%97%AE%E9%A2%98.md)
