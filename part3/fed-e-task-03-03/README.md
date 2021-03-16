@@ -11,7 +11,7 @@
 - 本作业需要 放在 **github** 个人仓库, 并且**实现自动化部署**
 - 作业提交 「仓库代码地址」，在 README.md 中 输出「部署成功的服务器地址」
 
-　
+　　
 
 **说明**
 
@@ -19,9 +19,9 @@
 
  https://www.ucloud.cn/site/active/lagou.html
 
-<b style="color:red">购买时，要选择 CentOS 系统</b>
+**( 购买时，要选择 CentOS 系统 )**
 
-
+　
 
 #### 可能出现问题 ( 建议提前做好 )
 
@@ -29,7 +29,7 @@
 
 参考:  https://juejin.cn/post/6904234342575407111#heading-0
 
-　
+　　
 
 **服务器上安装 nvm 和 node**
 
