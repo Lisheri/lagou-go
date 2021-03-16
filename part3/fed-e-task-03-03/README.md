@@ -19,7 +19,7 @@
 
  https://www.ucloud.cn/site/active/lagou.html
 
-**( 购买时，要选择 CentOS 系统 )**
+<b style="color:red">购买时，要选择 CentOS 系统</b>
 
 
 
