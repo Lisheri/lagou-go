@@ -1,0 +1,11 @@
+{
+  "name": "lagoufed-e-task",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Lisheri/lagou-go.git",
+  "author": "Lisheri",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}

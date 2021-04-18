@@ -13,3 +13,20 @@
   }, 10)
 */
 
+new Promise(resolve => {
+  setTimeout(function() {
+    resolve('hello')
+  }, 10)
+}).then(res => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(res + ' lagou ')
+    }, 10)
+  });
+}).then(res => {
+  setTimeout(function() {
+    const c = 'I ♥ U'
+    console.info(res + c)
+  }, 10)
+})
+

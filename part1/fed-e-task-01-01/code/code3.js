@@ -12,7 +12,7 @@ const { Maybe, Container } = require('./support')
 let maybe = Maybe.of([5, 6, 1])
 
 // 2.实现 ex1 函数
-
+const ex1 = fp.map(fp.add(1))
 // 3.调用测试
 console.log( maybe.map(ex1) )  // Maybe { _value: [ 6, 7, 2 ] }
 
@@ -26,9 +26,9 @@ console.log( maybe.map(ex1) )  // Maybe { _value: [ 6, 7, 2 ] }
 let xs = Container.of(['do', 'ray', 'me', 'fa', 'so', 'la', 'ti', 'do'])
 
 // 2.实现 ex2
-
+const ex2 = fp.first
 // 3.测试打印
-// console.log( xs.map(ex2) )  // Container { _value: 'do' }
+console.log( xs.map(ex2) )  // Container { _value: 'do' }
 
 
 /*
@@ -42,7 +42,7 @@ let safeProp = fp.curry(function (x, o) {
 let user = { id: 2, name: 'Albert'}
 
 // 1.实现 ex3
-
+const ex3 = () => safeProp('name')(user).map(fp.first)
 // 2.测试打印
 console.log( ex3() ) // Maybe { _value: 'A' }
 
@@ -61,7 +61,7 @@ console.log( ex3() ) // Maybe { _value: 'A' }
 */
 
 // 1.实现 ex4 函数
-
+const ex4 = str => Maybe.of(str).map(parseInt)
 // 2.测试打印
 console.log( ex4('7R') )   // Maybe { _value: 7 }
 console.log( ex4('7.6B'))  // Maybe { _value: 7 }
