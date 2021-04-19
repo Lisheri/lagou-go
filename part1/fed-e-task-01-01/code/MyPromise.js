@@ -115,7 +115,7 @@ class MyPromise {
         return new MyPromise(undefined, reject => reject(reason));
     }
     
-    all(promiseArr) {
+    static all(promiseArr) {
         // * All函数接收一系列promise数组或者是原始值, 然后按顺序返回出来
         // * 为了保障异步执行, 需要使用一个变量的控制是否执行完, 一定要等待全部执行完, 才能返回, 返回值也是一个promise, 支持链式调用
         let res = [];
@@ -130,12 +130,61 @@ class MyPromise {
         }
         return new MyPromise((resolve, reject) => {
             for (let i = 0; i < promiseArr.length; i++) {
-                let current = promiseArr[i];
+                const current = promiseArr[i];
                 if (current instanceof MyPromise) {
                     // * 当前值是promise
                     current.then(value => addData(i, value, resolve), err => {
                         // * 只要有一个报错，则直接返回错误信息
                         reject(err);
+                    });
+                } else {
+                    // * 普通值
+                    addData(i, current, resolve);
+                }
+            }
+        })
+    }
+
+    static race(promiseAll) {
+        // * 和promise.all 类似, 但是只返回最先执行完成的
+        let res = undefined;
+        function addData (value, resolve) {
+            res = value;
+            resolve(res)
+        }
+        return new Promise((resolve, reject) => {
+            for (let i = 0; i < promiseAll.length; i++) {
+                const current = promiseAll[i]
+                if (current instanceof MyPromise) {
+                    current.then(value => addData(value, resolve), err => {
+                        reject(err);
+                    })
+                } else {
+                    addData(current, resolve);
+                }
+            }
+        })
+    }
+
+    static allSettled(promiseALl) {
+        let res = [];
+        let index = 0;
+        let addData = function(key, value, resolve) {
+            res[key] = value; // * 保证返回值的顺序
+            index++;
+            if (index === promiseArr.length) {
+                // * 说明执行完了, 此时执行resolve
+                resolve(res);
+            }
+        }
+        return new MyPromise((resolve, reject) => {
+            for (let i = 0; i < promiseArr.length; i++) {
+                const current = promiseArr[i];
+                if (current instanceof MyPromise) {
+                    // * 当前值是promise
+                    current.then(value => addData(i, value, resolve), err => {
+                        // * 有错误也添加到数组中, 无状态返回一组执行结果数组
+                        addData(i, value, resolve);
                     });
                 } else {
                     // * 普通值
