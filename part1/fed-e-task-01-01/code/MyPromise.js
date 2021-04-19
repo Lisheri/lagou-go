@@ -169,8 +169,18 @@ class MyPromise {
     static allSettled(promiseALl) {
         let res = [];
         let index = 0;
-        let addData = function(key, value, resolve) {
-            res[key] = value; // * 保证返回值的顺序
+        let addData = function(key, value, resolve, status) {
+            if (status === RESOLVED) {
+                res[key] = {
+                    status: 'fulfilled',
+                    value: value
+                }
+            } else {
+                res[key] = {
+                    status: 'rejected',
+                    reason: value
+                }
+            }
             index++;
             if (index === promiseArr.length) {
                 // * 说明执行完了, 此时执行resolve
@@ -182,13 +192,13 @@ class MyPromise {
                 const current = promiseArr[i];
                 if (current instanceof MyPromise) {
                     // * 当前值是promise
-                    current.then(value => addData(i, value, resolve), err => {
+                    current.then(value => addData(i, value, resolve, RESOLVED), err => {
                         // * 有错误也添加到数组中, 无状态返回一组执行结果数组
-                        addData(i, value, resolve);
+                        addData(i, value, resolve, REJECTED);
                     });
                 } else {
                     // * 普通值
-                    addData(i, current, resolve);
+                    addData(i, current, resolve, RESOLVED);
                 }
             }
         })
