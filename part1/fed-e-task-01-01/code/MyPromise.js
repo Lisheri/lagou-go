@@ -55,7 +55,7 @@ class MyPromise {
         // * 同时successCallback并不是立即执行的, 他是一个异步的过程, 因此需要使用一个异步处理, 此处采用setTimeout, 实际上应该使用微队列
         let prmise2 = new MyPromise((resolve, reject) => {
             if (this.state === RESOLVED) {
-                setTimeout(() => {
+                queueMicrotask(() => {
                     // * 如果状态是成功直接执行正确的那一个回调(比如promise中没有异步操作), 
                     // * then中第一个回调需要拿到上一次resolve的value
                     let x = successCallback(this.value);
@@ -64,20 +64,20 @@ class MyPromise {
                 });
             } else if (this.state === REJECTED) {
                 // * 和成功状态的处理一致, 只不过处理失败的状态
-                setTimeout(() => {
+                queueMicrotask(() => {
                     let x = failCallback(this.reason);
                     this.resolvePromise(promise2, x, resolve, reject);
                 });
             } else if (this.state === PENDING) {
                 // * 如果promise中存在异步操作，这里就是pending, 就需要将then中回调延迟挂载到异步队列中
                 this.successedCallback.push(() => {
-                    setTimeout(() => {
+                    queueMicrotask(() => {
                         let x = successCallback(this.value);
                         this.resolvePromise(promise2, x, resolve, reject);
                     })
                 });
                 this.failedCallback.push(() => {
-                    setTimeout(() => {
+                    queueMicrotask(() => {
                         let x = failCallback(this.reason);
                         this.resolvePromise(promise2, x, resolve, reject);
                     })
